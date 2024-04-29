@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="md_realproperty_dw_logicaldesign" id="LogicalDesign-23aa" database="LogicalDesign" >
+	<schema name="INSTANCE" catalogname="md_realproperty_dw_logicaldesign" >
+		<table name="dim_date" prior="Entity" >
+			<column name="date_id" type="BIGINT" jt="-5" mandatory="y" />
+			<column name="year" type="INT" jt="4" />
+			<column name="monthNumber" type="INT" jt="4" />
+			<column name="quarter" type="INT" jt="4" />
+			<column name="monthname" type="VARCHAR" length="100" jt="12" />
+			<index name="pk_dim_date" unique="PRIMARY_KEY" >
+				<column name="date_id" />
+			</index>
+		</table>
+		<table name="dim_location" prior="Entity" >
+			<column name="premises_address_zip_code" type="INT" jt="4" mandatory="y" />
+			<column name="city_name" type="VARCHAR" length="100" jt="12" />
+			<column name="county_name" type="VARCHAR" length="100" jt="12" />
+			<index name="pk_dim_location" unique="PRIMARY_KEY" >
+				<column name="premises_address_zip_code" />
+			</index>
+		</table>
+		<table name="dim_property" >
+			<column name="account_id" type="BIGINT" jt="-5" mandatory="y" />
+			<column name="premise_address_zip_code" type="INT" jt="4" />
+			<column name="land_use" type="VARCHAR" jt="12" />
+			<column name="property_factors_utilities_water" type="VARCHAR" jt="12" />
+			<column name="property_factors_utilities_sewer" type="VARCHAR" jt="12" />
+			<column name="property_factors_location_waterfront" type="VARCHAR" jt="12" />
+			<column name="property_factors_influence_historical" type="VARCHAR" jt="12" />
+			<index name="pk_dim_property" unique="PRIMARY_KEY" >
+				<column name="account_id" />
+			</index>
+		</table>
+		<table name="facts_assessment" >
+			<column name="fact_id" type="BIGINT" jt="-5" mandatory="y" />
+			<column name="premise_address_zip_code" type="INT" jt="4" mandatory="y" />
+			<column name="base_cycle_date_assessed" type="DATE" jt="91" mandatory="y" />
+			<column name="base_cycle_land_value" type="DECIMAL" length="9" decimal="2" jt="3" />
+			<column name="base_cycle_improvements_value" type="DECIMAL" length="9" decimal="2" jt="3" />
+			<column name="prior_assessment_total_assessment" type="DECIMAL" length="9" decimal="2" jt="3" />
+			<column name="current_cycle_date_assessed" type="DATE" jt="91" mandatory="y" />
+			<column name="current_cycle_land_value" type="DECIMAL" length="9" decimal="2" jt="3" />
+			<column name="current_cycle_imporvements_value" type="DECIMAL" length="9" decimal="2" jt="3" />
+			<column name="current_assessment_year_total_phase_in_value" type="DECIMAL" length="9" decimal="2" jt="3" />
+			<column name="current_assessement_year_total_assessment" type="DECIMAL" length="9" decimal="2" jt="3" />
+			<column name="land_area" type="DECIMAL" length="9" decimal="2" jt="3" />
+			<column name="homestead_qualification_date" type="DATE" jt="91" mandatory="y" />
+			<column name="account_id" type="BIGINT" jt="-5" mandatory="y" />
+			<column name="sales_segment_1_transfer_number" prior="sales_segment_1 _transfer_number" type="BIGINT" jt="-5" />
+			<column name="sales_segment_1_transfer_date" type="DATE" jt="91" mandatory="y" />
+			<column name="sales_segment_1_mkt_land_value" type="DECIMAL" length="9" decimal="2" jt="3" />
+			<column name="sales_segment_1_mkt_improvement" type="DECIMAL" length="9" decimal="2" jt="3" />
+			<column name="sales_segment_2_transfer_number" type="BIGINT" jt="-5" />
+			<column name="sales_segment_2_transfer_date" type="DATE" jt="91" mandatory="y" />
+			<column name="sales_segment_2_mkt_land_value" type="DECIMAL" length="9" decimal="2" jt="3" />
+			<column name="sales_segment_2_mkt_improvement" type="DECIMAL" length="9" decimal="2" jt="3" />
+			<column name="sales_segment_3_transfer_number" type="BIGINT" jt="-5" />
+			<column name="sales_segment_3_transfer_date" type="DATE" jt="91" mandatory="y" />
+			<column name="sales_segment_3_mkt_land_value" type="DECIMAL" length="9" decimal="2" jt="3" />
+			<column name="sales_segment_3_mkt_improvement" type="DECIMAL" length="9" decimal="2" jt="3" />
+			<index name="pk_facts_assessment" unique="PRIMARY_KEY" >
+				<column name="fact_id" />
+				<column name="account_id" />
+				<column name="premise_address_zip_code" />
+				<column name="base_cycle_date_assessed" />
+				<column name="current_cycle_date_assessed" />
+				<column name="homestead_qualification_date" />
+				<column name="sales_segment_1_transfer_date" />
+				<column name="sales_segment_2_transfer_date" />
+				<column name="sales_segment_3_transfer_date" />
+			</index>
+			<fk name="fk_facts_assessment_dim_property" virtual="y" to_schema="md_realproperty_dw_logicaldesign.INSTANCE" to_table="dim_property" type="Identifying" mandatory="y" cardinality="ZeroMore" range_from="0" range_to="0" >
+				<fk_column name="account_id" pk="account_id" />
+			</fk>
+			<fk name="fk_facts_assessment_dim_location" virtual="y" to_schema="md_realproperty_dw_logicaldesign.INSTANCE" to_table="dim_location" type="Identifying" mandatory="y" cardinality="ZeroMore" range_from="0" range_to="0" />
+			<fk name="fk_facts_assessment_dim_date" virtual="y" to_schema="md_realproperty_dw_logicaldesign.INSTANCE" to_table="dim_date" type="Identifying" mandatory="y" cardinality="ZeroMore" range_from="0" range_to="0" >
+				<fk_column name="base_cycle_date_assessed" pk="date_id" />
+			</fk>
+			<fk name="fk_facts_assessment_dim_date_0" virtual="y" to_schema="md_realproperty_dw_logicaldesign.INSTANCE" to_table="dim_date" type="Identifying" mandatory="y" cardinality="ZeroMore" range_from="0" range_to="0" >
+				<fk_column name="current_cycle_date_assessed" pk="date_id" />
+			</fk>
+			<fk name="fk_facts_assessment_dim_date_1" virtual="y" to_schema="md_realproperty_dw_logicaldesign.INSTANCE" to_table="dim_date" type="Identifying" mandatory="y" cardinality="ZeroMore" range_from="0" range_to="0" >
+				<fk_column name="homestead_qualification_date" pk="date_id" />
+			</fk>
+			<fk name="fk_facts_assessment_dim_date_2" virtual="y" to_schema="md_realproperty_dw_logicaldesign.INSTANCE" to_table="dim_date" type="Identifying" mandatory="y" cardinality="ZeroMore" range_from="0" range_to="0" >
+				<fk_column name="sales_segment_1_transfer_date" pk="date_id" />
+			</fk>
+			<fk name="fk_facts_assessment_dim_date_3" virtual="y" to_schema="md_realproperty_dw_logicaldesign.INSTANCE" to_table="dim_date" type="Identifying" mandatory="y" cardinality="ZeroMore" range_from="0" range_to="0" >
+				<fk_column name="sales_segment_2_transfer_date" pk="date_id" />
+			</fk>
+			<fk name="fk_facts_assessment_dim_date_4" virtual="y" to_schema="md_realproperty_dw_logicaldesign.INSTANCE" to_table="dim_date" type="Identifying" mandatory="y" cardinality="ZeroMore" range_from="0" range_to="0" >
+				<fk_column name="sales_segment_3_transfer_date" pk="date_id" />
+			</fk>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout-a23" show_relation="columns" >
+		<entity schema="md_realproperty_dw_logicaldesign.INSTANCE" name="dim_date" color="C1D8EE" x="238" y="544" />
+		<entity schema="md_realproperty_dw_logicaldesign.INSTANCE" name="dim_location" color="C1D8EE" x="323" y="238" />
+		<entity schema="md_realproperty_dw_logicaldesign.INSTANCE" name="dim_property" color="C1D8EE" x="748" y="187" />
+		<entity schema="md_realproperty_dw_logicaldesign.INSTANCE" name="facts_assessment" color="C1D8EE" x="476" y="425" />
+		<callout x="51" y="51" pointer="Round" >
+			<comment><![CDATA[This is a layout - a diagram with tools.
+- Create new entities by right-clicking the layout. 
+- Double-click entity headers to edit.
+- For a better understanding of the schema, create multiple layouts.
+- Deploy the model into the database by converting it first to the physical design.]]></comment>
+		</callout>
+	</layout>
+</project>
