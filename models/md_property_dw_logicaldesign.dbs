@@ -12,12 +12,38 @@
 			</index>
 		</table>
 		<table name="dim_location" prior="Entity" >
-			<column name="premises_address_zip_code" type="INT" jt="4" mandatory="y" />
-			<column name="city_name" type="VARCHAR" length="100" jt="12" />
-			<column name="county_name" type="VARCHAR" length="100" jt="12" />
-			<index name="pk_dim_location" unique="PRIMARY_KEY" >
-				<column name="premises_address_zip_code" />
-			</index>
+                        <column name="property_id" type="BIGINT" jt="-5" mandatory="y" />
+                        <column name="latitude" type="DECIMAL" length="9" decimal="6" jt="3" />
+                        <column name="longitude" type="DECIMAL" length="9" decimal="6" jt="3" />
+                        <column name="city" type="VARCHAR" length="255" jt="12" />
+                        <column name="zipcode" type="INT" jt="4" />
+                        <column name="dwelling_condition" type="VARCHAR" length="255" jt="12" />
+                        <column name="dwelling_grade_code_and_description" type="VARCHAR" length="255" jt="12" />
+                        <column name="field_depth" type="INT" jt="4" />
+                        <column name="field_width" type="INT" jt="4" />
+                        <column name="land_area" type="DECIMAL" length="9" decimal="2" jt="3" />
+                        <column name="land_unit_of_measure" type="VARCHAR" length="50" jt="12" />
+                        <column name="number_of_dwelling_units" type="INT" jt="4" />
+                        <column name="number_of_stories" type="INT" jt="4" />
+                        <column name="set_no" type="INT" jt="4" />
+                        <column name="structure_area_sq_ft" type="INT" jt="4" />
+                        <column name="subset_no" type="INT" jt="4" />
+                        <column name="year_built" type="INT" jt="4" />
+                        <column name="building_style" type="VARCHAR" length="255" jt="12" />
+                        <column name="dwelling_construction" type="VARCHAR" length="255" jt="12" />
+                        <column name="dwelling_type" type="VARCHAR" length="255" jt="12" />
+                        <column name="valuation_unit" type="VARCHAR" length="50" jt="12" />
+                        <column name="permit_type" type="VARCHAR" length="50" jt="12" />
+                        <column name="land_use" type="VARCHAR" length="50" jt="12" />
+                        <column name="commercial_industrial_influence" type="VARCHAR" length="255" jt="12" />
+                        <column name="historical_influence" type="VARCHAR" length="255" jt="12" />
+                        <column name="waterfront_location" type="VARCHAR" length="255" jt="12" />
+                        <column name="street_paved" type="VARCHAR" length="255" jt="12" />
+                        <column name="utilities_sewer" type="VARCHAR" length="50" jt="12" />
+                        <column name="utilities_water" type="DECIMAL" length="9" decimal="2" jt="3" />
+                        <index name="pk_dim_property" unique="PRIMARY_KEY">
+                                 <column name="property_id" />
+                        </index>
 		</table>
 		<table name="dim_property" >
 			<column name="account_id" type="BIGINT" jt="-5" mandatory="y" />
