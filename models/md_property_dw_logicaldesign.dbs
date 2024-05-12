@@ -45,7 +45,7 @@
                                  <column name="property_id" />
                         </index>
 		</table>
-		<table name="dim_property" >
+		<table name="dim_property1" >
 			<column name="account_id" type="BIGINT" jt="-5" mandatory="y" />
 			<column name="premise_address_zip_code" type="INT" jt="4" />
 			<column name="land_use" type="VARCHAR" jt="12" />
