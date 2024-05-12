@@ -11,7 +11,7 @@
 				<column name="date_id" />
 			</index>
 		</table>
-		<table name="dim_location" prior="Entity" >
+		<table name="dim_property" prior="Entity" >
                         <column name="property_id" type="BIGINT" jt="-5" mandatory="y" />
                         <column name="latitude" type="DECIMAL" length="9" decimal="6" jt="3" />
                         <column name="longitude" type="DECIMAL" length="9" decimal="6" jt="3" />
