@@ -13,8 +13,8 @@ Dataset Link: [Montgomery County Real Property Assessments](https://opendata.mar
 ## Interactive Dashboard
 Explore our interactive dashboard to visualize the trends and insights derived from the data:
 
-Dashboard Link: [Montgomery County Property Insights Dashboard](https://prod-useast-b.online.tableau.com/t/xiashuchubb7b7e6c4d/views/md_property/Dashboard1/bce7a287-d1ca-486f-8528-55e22c115c51/5cfe14f1-b395-4af8-a9d0-d3b3907d467c)
-
+Dashboard Link: [[Montgomery County Property Insights Dashboard](https://prod-useast-b.online.tableau.com/t/xiashuchubb7b7e6c4d/views/md_property/Dashboard1/bce7a287-d1ca-486f-8528-55e22c115c51/5cfe14f1-b395-4af8-a9d0-d3b3907d467c)
+](https://public.tableau.com/app/profile/rebecca.chu3638/viz/md_property/Dashboard1?publish=yes)
 ## Features
 This repository is structured to manage a comprehensive data workflow, from extraction to visualization. Here's what each part of the project involves:
 
